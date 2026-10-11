@@ -1,0 +1,2709 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MesaYa | Encuentra y reserva tu restaurante ideal</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Iconos -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+
+        /* =========================================================
+           CONFIGURACIÓN GENERAL
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: #fff8f2;
+            color: #1e1e1e;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button,
+        input,
+        select {
+            font-family: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .container {
+            width: 94%;
+            max-width: 1420px;
+            margin: auto;
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        header {
+            height: 64px;
+            background: #fffaf6;
+            border-bottom: 1px solid #eee7e0;
+
+            display: flex;
+            align-items: center;
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            width: 94%;
+            max-width: 1420px;
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+
+        /* LOGO */
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: #172d27;
+        }
+
+        .logo-icon {
+            width: 29px;
+            height: 29px;
+
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo-icon::before {
+            content: "";
+
+            position: absolute;
+            left: 4px;
+            top: 9px;
+
+            width: 21px;
+            height: 13px;
+
+            border: 3px solid #172d27;
+            border-top: none;
+
+            border-radius: 0 0 4px 4px;
+        }
+
+        .logo-icon::after {
+            content: "";
+
+            position: absolute;
+            left: 11px;
+            top: 2px;
+
+            width: 7px;
+            height: 20px;
+
+            border-left: 3px solid #172d27;
+            border-right: 3px solid #172d27;
+
+            transform: skew(-10deg);
+        }
+
+
+        /* NAV */
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 42px;
+
+            margin-left: 100px;
+        }
+
+        .nav-center a {
+            font-size: 14px;
+            font-weight: 500;
+
+            color: #242424;
+
+            transition: 0.2s;
+        }
+
+        .nav-center a:hover {
+            color: #467a62;
+        }
+
+
+        /* NAV RIGHT */
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .language {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+
+            padding: 8px 13px;
+
+            border: 1px solid #d8d2cc;
+            border-radius: 20px;
+
+            background: white;
+
+            font-size: 12px;
+        }
+
+        .create-account {
+            background: #4c775e;
+            color: white;
+
+            border: none;
+            border-radius: 22px;
+
+            padding: 10px 23px;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+        .create-account:hover {
+            background: #355e48;
+        }
+
+        .user-icon {
+            font-size: 24px;
+            color: #6d6d6d;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            height: 270px;
+
+            background-image:
+                linear-gradient(
+                    rgba(0,0,0,0.55),
+                    rgba(0,0,0,0.35)
+                ),
+                url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=85");
+
+            background-size: cover;
+            background-position: center 48%;
+
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            width: 94%;
+            max-width: 1420px;
+            margin: auto;
+
+            color: white;
+        }
+
+        .hero h1 {
+            font-family: "Playfair Display", serif;
+
+            font-size: clamp(34px, 4vw, 55px);
+            line-height: 0.95;
+
+            max-width: 650px;
+
+            margin-bottom: 13px;
+        }
+
+        .hero p {
+            max-width: 600px;
+
+            font-size: 14px;
+            line-height: 1.45;
+
+            font-weight: 500;
+        }
+
+
+        /* =========================================================
+           BUSCADOR
+        ========================================================= */
+
+        .search-wrapper {
+            margin-top: -24px;
+            position: relative;
+            z-index: 20;
+        }
+
+        .search-bar {
+            width: 94%;
+            max-width: 1380px;
+            margin: auto;
+
+            min-height: 65px;
+
+            background: #fff;
+
+            border: 1px solid #cfcac5;
+
+            border-radius: 38px;
+
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+
+            display: grid;
+
+            grid-template-columns: 2.5fr 1.15fr 1fr 1fr;
+
+            overflow: hidden;
+        }
+
+        .search-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            padding: 13px 22px;
+
+            border-right: 1px solid #e2ddd8;
+
+            cursor: pointer;
+        }
+
+        .search-item:last-child {
+            border-right: none;
+        }
+
+        .search-item i {
+            color: #626262;
+            font-size: 16px;
+        }
+
+        .search-item input,
+        .search-item select {
+            width: 100%;
+
+            border: none;
+            outline: none;
+
+            background: transparent;
+
+            font-size: 13px;
+            color: #3a3a3a;
+        }
+
+        .search-item input::placeholder {
+            color: #656565;
+        }
+
+
+        /* =========================================================
+           SECCIONES
+        ========================================================= */
+
+        main {
+            padding-bottom: 0;
+        }
+
+        .section {
+            width: 94%;
+            max-width: 1420px;
+            margin: 30px auto 0;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 14px;
+        }
+
+        .section-title h2 {
+            font-family: "Playfair Display", serif;
+
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .view-all {
+            font-size: 12px;
+            font-weight: 600;
+
+            color: #3f644f;
+
+            cursor: pointer;
+        }
+
+        .view-all:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =========================================================
+           CATEGORÍAS
+        ========================================================= */
+
+        .categories {
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, minmax(0, 1fr));
+
+            gap: 17px;
+
+            overflow: hidden;
+        }
+
+        .category {
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .category:hover {
+            transform: translateY(-3px);
+        }
+
+        .category-image {
+            height: 76px;
+
+            border-radius: 11px;
+
+            overflow: hidden;
+
+            background: #ddd;
+        }
+
+        .category-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: 0.3s;
+        }
+
+        .category:hover img {
+            transform: scale(1.05);
+        }
+
+        .category-name {
+            font-size: 12px;
+            font-weight: 500;
+
+            margin-top: 5px;
+
+            text-align: center;
+        }
+
+
+        /* =========================================================
+           RESTAURANTES
+        ========================================================= */
+
+        .restaurants {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 26px;
+
+            padding: 0 25px;
+        }
+
+        .restaurant-card {
+            background: #fff;
+
+            border-radius: 13px;
+
+            overflow: hidden;
+
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+            transition: 0.25s;
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 10px 24px rgba(0,0,0,0.13);
+        }
+
+        .restaurant-image {
+            height: 145px;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .restaurant-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+        .favorite {
+            position: absolute;
+
+            right: 12px;
+            top: 10px;
+
+            width: 29px;
+            height: 29px;
+
+            border: none;
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.88);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #666;
+
+            transition: 0.2s;
+        }
+
+        .favorite:hover {
+            color: #d35d5d;
+        }
+
+        .restaurant-content {
+            padding: 9px 12px 12px;
+        }
+
+        .restaurant-content h3 {
+            font-size: 14px;
+            font-weight: 700;
+
+            margin-bottom: 3px;
+        }
+
+        .restaurant-info {
+            font-size: 10px;
+            color: #777;
+
+            margin-bottom: 5px;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+
+            font-size: 10px;
+            color: #444;
+
+            margin-bottom: 8px;
+        }
+
+        .rating i {
+            color: #efb13e;
+            font-size: 9px;
+        }
+
+        .reserve-btn {
+            width: 100%;
+
+            border: none;
+
+            background: #4d795f;
+            color: white;
+
+            height: 25px;
+
+            border-radius: 14px;
+
+            font-size: 10px;
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+        .reserve-btn:hover {
+            background: #355e48;
+        }
+
+
+        /* =========================================================
+           BANNER DESCUENTOS
+        ========================================================= */
+
+        .discount-section {
+            margin-top: 30px;
+
+            background: #4d795f;
+
+            min-height: 150px;
+
+            padding: 18px 3%;
+
+            color: white;
+
+            display: grid;
+
+            grid-template-columns: 1.1fr 3fr;
+
+            gap: 20px;
+
+            align-items: center;
+        }
+
+        .discount-title h2 {
+            font-size: 28px;
+
+            line-height: 0.8;
+
+            font-weight: 800;
+        }
+
+        .discount-title p {
+            margin-top: 12px;
+
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .discount-btn {
+            margin-top: 10px;
+
+            border: none;
+
+            background: #ff6e6e;
+            color: white;
+
+            border-radius: 20px;
+
+            padding: 8px 20px;
+
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .discount-btn:hover {
+            background: #eb5656;
+        }
+
+        .discount-cards {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 17px;
+        }
+
+        .discount-card {
+            background: #f8f6f2;
+
+            border-radius: 5px;
+
+            overflow: hidden;
+
+            color: #222;
+
+            min-height: 108px;
+
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        }
+
+        .discount-image {
+            height: 57px;
+        }
+
+        .discount-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .discount-info {
+            padding: 5px 8px;
+        }
+
+        .discount-info strong {
+            display: block;
+
+            font-size: 10px;
+        }
+
+        .discount-info span {
+            font-size: 8px;
+            color: #777;
+        }
+
+        .mini-reserve {
+            width: 100%;
+
+            height: 19px;
+
+            margin-top: 4px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #4d795f;
+            color: white;
+
+            font-size: 8px;
+        }
+
+
+        /* =========================================================
+           RESEÑAS
+        ========================================================= */
+
+        .reviews-wrapper {
+            background: #fff;
+
+            border-radius: 10px;
+
+            padding: 10px 28px 18px;
+
+            box-shadow: 0 1px 5px rgba(0,0,0,0.04);
+        }
+
+        .review {
+            display: grid;
+
+            grid-template-columns: 48px 1fr 110px;
+
+            align-items: center;
+
+            gap: 14px;
+
+            padding: 12px 0;
+
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .review:last-child {
+            border-bottom: none;
+        }
+
+        .review-avatar {
+            width: 44px;
+            height: 44px;
+
+            border-radius: 50%;
+
+            overflow: hidden;
+        }
+
+        .review-avatar img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .review-name {
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .review-date {
+            font-size: 9px;
+            color: #888;
+
+            margin-bottom: 4px;
+        }
+
+        .review-stars {
+            color: #eeb13b;
+            font-size: 9px;
+
+            margin-bottom: 4px;
+        }
+
+        .review-text {
+            font-size: 10px;
+            color: #606060;
+
+            line-height: 1.4;
+        }
+
+        .review-tags {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .review-tag {
+            background: #f0f0f0;
+
+            border-radius: 12px;
+
+            padding: 3px 10px;
+
+            text-align: center;
+
+            font-size: 8px;
+            color: #777;
+        }
+
+        .reviews-button {
+            display: block;
+
+            width: 135px;
+
+            height: 28px;
+
+            margin: 15px auto 0;
+
+            border: none;
+
+            border-radius: 15px;
+
+            background: #4d795f;
+
+            color: white;
+
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            margin-top: 32px;
+
+            background: #fff1e9;
+
+            border-top: 1px solid #eee1d8;
+
+            padding: 25px 3% 10px;
+        }
+
+        .footer-grid {
+            max-width: 1420px;
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                1.2fr 1fr 1fr 1fr;
+
+            gap: 40px;
+        }
+
+        .footer-logo {
+            margin-bottom: 15px;
+        }
+
+        .footer-column h3 {
+            font-family: "Playfair Display", serif;
+
+            font-size: 18px;
+
+            margin-bottom: 8px;
+        }
+
+        .footer-column a {
+            display: block;
+
+            font-size: 11px;
+
+            color: #343434;
+
+            margin-bottom: 6px;
+
+            transition: 0.2s;
+        }
+
+        .footer-column a:hover {
+            color: #4d795f;
+        }
+
+        .contact {
+            font-size: 11px;
+            line-height: 1.8;
+        }
+
+        .copyright {
+            max-width: 1420px;
+            margin: 12px auto 0;
+
+            padding-top: 7px;
+
+            border-top: 1px solid #dacfc7;
+
+            text-align: center;
+
+            font-size: 10px;
+        }
+
+
+        /* =========================================================
+           MODAL RESERVA
+        ========================================================= */
+
+        .modal {
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(0,0,0,0.55);
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            z-index: 3000;
+
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-box {
+            width: 100%;
+            max-width: 470px;
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 28px;
+
+            position: relative;
+
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+        }
+
+        .close-modal {
+            position: absolute;
+
+            top: 13px;
+            right: 15px;
+
+            border: none;
+
+            background: transparent;
+
+            font-size: 22px;
+
+            color: #777;
+        }
+
+        .modal-box h2 {
+            font-family: "Playfair Display", serif;
+
+            font-size: 27px;
+
+            margin-bottom: 5px;
+        }
+
+        .modal-restaurant {
+            color: #4d795f;
+
+            font-size: 14px;
+            font-weight: 700;
+
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-group label {
+            display: block;
+
+            font-size: 11px;
+            font-weight: 600;
+
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+
+            height: 40px;
+
+            border: 1px solid #ddd6d0;
+
+            border-radius: 9px;
+
+            padding: 0 12px;
+
+            outline: none;
+
+            font-size: 12px;
+        }
+
+        .confirm-reservation {
+            width: 100%;
+
+            height: 43px;
+
+            border: none;
+
+            border-radius: 22px;
+
+            background: #4d795f;
+
+            color: white;
+
+            font-weight: 700;
+
+            margin-top: 5px;
+        }
+
+
+        /* =========================================================
+           TOAST
+        ========================================================= */
+
+        .toast {
+            position: fixed;
+
+            right: 25px;
+            bottom: 25px;
+
+            background: #1d2924;
+            color: white;
+
+            padding: 13px 18px;
+
+            border-radius: 10px;
+
+            font-size: 12px;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transform: translateY(20px);
+
+            transition: 0.3s;
+
+            z-index: 4000;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 1000px) {
+
+            .nav-center {
+                margin-left: 0;
+                gap: 20px;
+            }
+
+            .search-bar {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+            .search-item {
+                border-bottom: 1px solid #eee;
+            }
+
+            .categories {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+            .restaurants {
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                padding: 0;
+            }
+
+            .discount-section {
+                grid-template-columns: 1fr;
+            }
+
+            .discount-cards {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+        }
+
+
+        @media (max-width: 700px) {
+
+            header {
+                height: auto;
+                padding: 12px 0;
+            }
+
+            .navbar {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .nav-center {
+                order: 3;
+
+                width: 100%;
+
+                justify-content: center;
+
+                gap: 18px;
+            }
+
+            .nav-center a {
+                font-size: 11px;
+            }
+
+            .language {
+                display: none;
+            }
+
+            .create-account {
+                padding: 8px 14px;
+                font-size: 11px;
+            }
+
+            .hero {
+                height: 250px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 12px;
+            }
+
+            .search-wrapper {
+                margin-top: -15px;
+            }
+
+            .search-bar {
+                width: 90%;
+
+                grid-template-columns: 1fr;
+
+                border-radius: 18px;
+            }
+
+            .search-item {
+                min-height: 50px;
+
+                border-right: none;
+            }
+
+            .categories {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .restaurants {
+                grid-template-columns: 1fr;
+            }
+
+            .discount-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .review {
+                grid-template-columns: 44px 1fr;
+            }
+
+            .review-tags {
+                display: none;
+            }
+
+            .footer-grid {
+                grid-template-columns:
+                    1fr 1fr;
+            }
+        }
+
+
+        @media (max-width: 450px) {
+
+            .categories {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header>
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+
+            <span class="logo-icon"></span>
+
+            <span>MesaYa</span>
+
+        </a>
+
+
+        <div class="nav-center">
+
+            <a href="explorar.html">
+                Explorar
+            </a>
+
+            <a href="restaurantes.html">
+                Restaurantes
+            </a>
+
+            <a href="reservas.html">
+                Mis reservas
+            </a>
+
+        </div>
+
+
+        <div class="nav-right">
+
+            <button class="language" onclick="showToast('Selector de idioma preparado para futuras versiones')">
+
+                <i class="fa-solid fa-globe"></i>
+
+                Español
+
+                <i class="fa-solid fa-chevron-down"></i>
+
+            </button>
+
+
+            <a href="registro.html">
+
+                <button class="create-account">
+                    Crear cuenta
+                </button>
+
+            </a>
+
+
+            <i class="fa-solid fa-user user-icon"></i>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            Encuentra y reserva tu<br>
+            restaurante ideal
+        </h1>
+
+        <p>
+            Descubre los mejores restaurantes, explora por cocina, ubicación
+            <br>
+            o ambiente y asegura tu mesa en pocos pasos
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     BUSCADOR
+========================================================= -->
+
+<div class="search-wrapper">
+
+    <div class="search-bar">
+
+
+        <!-- BUSCAR -->
+
+        <div class="search-item">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="¿Qué restaurante, cocina o plato estás buscando?"
+            >
+
+        </div>
+
+
+        <!-- UBICACIÓN -->
+
+        <div class="search-item">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            <select id="location">
+
+                <option value="Lima, Perú">
+                    Lima, Perú
+                </option>
+
+                <option>
+                    Miraflores
+                </option>
+
+                <option>
+                    Barranco
+                </option>
+
+                <option>
+                    San Isidro
+                </option>
+
+                <option>
+                    Callao
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- FECHA -->
+
+        <div class="search-item">
+
+            <i class="fa-regular fa-calendar"></i>
+
+            <input
+                type="date"
+                id="date"
+                value="2026-09-26"
+            >
+
+        </div>
+
+
+        <!-- PERSONAS -->
+
+        <div class="search-item">
+
+            <i class="fa-regular fa-user"></i>
+
+            <select id="guests">
+
+                <option value="1">
+                    1 persona
+                </option>
+
+                <option value="2" selected>
+                    2 personas
+                </option>
+
+                <option value="3">
+                    3 personas
+                </option>
+
+                <option value="4">
+                    4 personas
+                </option>
+
+                <option value="5">
+                    5 personas
+                </option>
+
+                <option value="6">
+                    6 personas
+                </option>
+
+                <option value="7">
+                    7 personas
+                </option>
+
+                <option value="8">
+                    8 personas
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<main>
+
+
+<!-- =========================================================
+     CATEGORÍAS
+========================================================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            Explora por tipo de cocina
+        </h2>
+
+        <a href="restaurantes.html" class="view-all">
+            Ver todos
+        </a>
+
+    </div>
+
+
+    <div class="categories">
+
+
+        <div class="category"
+             onclick="filterCategory('Criolla')">
+
+            <div class="category-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=700&q=85"
+                    alt="Comida criolla"
+                >
+
+            </div>
+
+            <div class="category-name">
+                Criolla
+            </div>
+
+        </div>
+
+
+        <div class="category"
+             onclick="filterCategory('Japonesa')">
+
+            <div class="category-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=700&q=85"
+                    alt="Comida japonesa"
+                >
+
+            </div>
+
+            <div class="category-name">
+                Japonesa
+            </div>
+
+        </div>
+
+
+        <div class="category"
+             onclick="filterCategory('Marina')">
+
+            <div class="category-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=85"
+                    alt="Comida marina"
+                >
+
+            </div>
+
+            <div class="category-name">
+                Marina
+            </div>
+
+        </div>
+
+
+        <div class="category"
+             onclick="filterCategory('Mediterránea')">
+
+            <div class="category-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=700&q=85"
+                    alt="Comida mediterránea"
+                >
+
+            </div>
+
+            <div class="category-name">
+                Mediterránea
+            </div>
+
+        </div>
+
+
+        <div class="category"
+             onclick="filterCategory('De autor')">
+
+            <div class="category-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=700&q=85"
+                    alt="Cocina de autor"
+                >
+
+            </div>
+
+            <div class="category-name">
+                De autor
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     RESTAURANTES CERCA
+========================================================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            Restaurantes cerca de ti
+        </h2>
+
+        <a href="restaurantes.html" class="view-all">
+            Ver todos
+        </a>
+
+    </div>
+
+
+    <div class="restaurants">
+
+
+        <!-- RESTAURANTE 1 -->
+
+        <article class="restaurant-card"
+                 data-category="Multirrubro">
+
+            <div class="restaurant-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=900&q=85"
+                    alt="Restaurante Rustica"
+                >
+
+                <button
+                    class="favorite"
+                    onclick="toggleFavorite(this)"
+                    aria-label="Favorito"
+                >
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
+            </div>
+
+
+            <div class="restaurant-content">
+
+                <h3>
+                    Rustica
+                </h3>
+
+                <div class="restaurant-info">
+                    Multirrubro · S/30 a S/80 · Barranco
+                </div>
+
+                <div class="rating">
+
+                    <i class="fa-solid fa-star"></i>
+
+                    <strong>4.8</strong>
+
+                    <span>
+                        (1.2k reservas)
+                    </span>
+
+                </div>
+
+                <button
+                    class="reserve-btn"
+                    onclick="openReservation('Rustica')"
+                >
+                    Reservar
+                </button>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- RESTAURANTE 2 -->
+
+        <article class="restaurant-card"
+                 data-category="Marina">
+
+            <div class="restaurant-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85"
+                    alt="Restaurante La Mar"
+                >
+
+                <button
+                    class="favorite"
+                    onclick="toggleFavorite(this)"
+                    aria-label="Favorito"
+                >
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
+            </div>
+
+
+            <div class="restaurant-content">
+
+                <h3>
+                    La Mar
+                </h3>
+
+                <div class="restaurant-info">
+                    Marina · S/30 a S/120 · Miraflores
+                </div>
+
+                <div class="rating">
+
+                    <i class="fa-solid fa-star"></i>
+
+                    <strong>4.9</strong>
+
+                    <span>
+                        (1.5k reservas)
+                    </span>
+
+                </div>
+
+                <button
+                    class="reserve-btn"
+                    onclick="openReservation('La Mar')"
+                >
+                    Reservar
+                </button>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- RESTAURANTE 3 -->
+
+        <article class="restaurant-card"
+                 data-category="Criolla">
+
+            <div class="restaurant-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=85"
+                    alt="La Antojeria"
+                >
+
+                <button
+                    class="favorite"
+                    onclick="toggleFavorite(this)"
+                    aria-label="Favorito"
+                >
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
+            </div>
+
+
+            <div class="restaurant-content">
+
+                <h3>
+                    La Antojeria
+                </h3>
+
+                <div class="restaurant-info">
+                    Criolla · S/30 a S/100 · Miraflores
+                </div>
+
+                <div class="rating">
+
+                    <i class="fa-solid fa-star"></i>
+
+                    <strong>4.6</strong>
+
+                    <span>
+                        (1k reservas)
+                    </span>
+
+                </div>
+
+                <button
+                    class="reserve-btn"
+                    onclick="openReservation('La Antojeria')"
+                >
+                    Reservar
+                </button>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     DESCUENTOS
+========================================================= -->
+
+<section class="discount-section">
+
+
+    <div class="discount-title">
+
+        <h2>
+            Dsctos<br>
+            MesaYa
+        </h2>
+
+        <p>
+            Exclusivos de MesaYa
+        </p>
+
+        <button
+            class="discount-btn"
+            onclick="showToast('Mostrando promociones disponibles')"
+        >
+            Descúbrelos hoy
+        </button>
+
+    </div>
+
+
+
+    <div class="discount-cards">
+
+
+        <!-- PROMO 1 -->
+
+        <div class="discount-card">
+
+            <div class="discount-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=700&q=85"
+                    alt="Dos Tazas"
+                >
+
+            </div>
+
+            <div class="discount-info">
+
+                <strong>
+                    DOS TAZAS
+                </strong>
+
+                <span>
+                    Café · Lince
+                </span>
+
+                <button
+                    class="mini-reserve"
+                    onclick="openReservation('Dos Tazas')"
+                >
+                    Reservar
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PROMO 2 -->
+
+        <div class="discount-card">
+
+            <div class="discount-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=700&q=85"
+                    alt="Lung Fung"
+                >
+
+            </div>
+
+            <div class="discount-info">
+
+                <strong>
+                    LUNG FUNG
+                </strong>
+
+                <span>
+                    Chifa · Chorrillos
+                </span>
+
+                <button
+                    class="mini-reserve"
+                    onclick="openReservation('Lung Fung')"
+                >
+                    Reservar
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PROMO 3 -->
+
+        <div class="discount-card">
+
+            <div class="discount-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=700&q=85"
+                    alt="Café de Lima"
+                >
+
+            </div>
+
+            <div class="discount-info">
+
+                <strong>
+                    CAFÉ DE LIMA
+                </strong>
+
+                <span>
+                    Café · Cercado de Lima
+                </span>
+
+                <button
+                    class="mini-reserve"
+                    onclick="openReservation('Café de Lima')"
+                >
+                    Reservar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     RESEÑAS
+========================================================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            Reseñas de clientes
+        </h2>
+
+    </div>
+
+
+    <div class="reviews-wrapper">
+
+
+        <!-- REVIEW 1 -->
+
+        <div class="review">
+
+            <div class="review-avatar">
+
+                <img
+                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=85"
+                    alt="Camila"
+                >
+
+            </div>
+
+
+            <div>
+
+                <div class="review-name">
+                    Camila R.
+                </div>
+
+                <div class="review-date">
+                    Hace 3 días
+                </div>
+
+                <div class="review-stars">
+                    ★★★★★
+                </div>
+
+                <p class="review-text">
+                    La comida es increíble, todo estuvo delicioso.
+                    El ambiente es muy agradable y el servicio fue excelente.
+                    Sin duda volvería.
+                </p>
+
+            </div>
+
+
+            <div class="review-tags">
+
+                <span class="review-tag">
+                    Comida
+                </span>
+
+                <span class="review-tag">
+                    Servicio
+                </span>
+
+                <span class="review-tag">
+                    Ambiente
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- REVIEW 2 -->
+
+        <div class="review">
+
+            <div class="review-avatar">
+
+                <img
+                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=85"
+                    alt="Diego"
+                >
+
+            </div>
+
+
+            <div>
+
+                <div class="review-name">
+                    Diego M.
+                </div>
+
+                <div class="review-date">
+                    Hace 1 semana
+                </div>
+
+                <div class="review-stars">
+                    ★★★★★
+                </div>
+
+                <p class="review-text">
+                    Buena experiencia. Pedimos pizza y estaba espectacular.
+                    El local es pequeño pero muy bonito y la atención fue rápida.
+                </p>
+
+            </div>
+
+
+            <div class="review-tags">
+
+                <span class="review-tag">
+                    Comida
+                </span>
+
+                <span class="review-tag">
+                    Servicio
+                </span>
+
+                <span class="review-tag">
+                    Ambiente
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- REVIEW 3 -->
+
+        <div class="review">
+
+            <div class="review-avatar">
+
+                <img
+                    src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=200&q=85"
+                    alt="Valeria"
+                >
+
+            </div>
+
+
+            <div>
+
+                <div class="review-name">
+                    Valeria S.
+                </div>
+
+                <div class="review-date">
+                    Hace 4 días
+                </div>
+
+                <div class="review-stars">
+                    ★★★★☆
+                </div>
+
+                <p class="review-text">
+                    La comida estuvo muy buena, aunque el tiempo de espera
+                    fue un poco largo. El ambiente es hermoso y la atención
+                    es cordial.
+                </p>
+
+            </div>
+
+
+            <div class="review-tags">
+
+                <span class="review-tag">
+                    Comida
+                </span>
+
+                <span class="review-tag">
+                    Servicio
+                </span>
+
+                <span class="review-tag">
+                    Ambiente
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <button
+            class="reviews-button"
+            onclick="location.href='resenas.html'"
+        >
+            Ver todos
+        </button>
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="footer-grid">
+
+
+        <!-- EMPRESA -->
+
+        <div class="footer-column">
+
+            <div class="logo footer-logo">
+
+                <span class="logo-icon"></span>
+
+                <span>MesaYa</span>
+
+            </div>
+
+            <div class="contact">
+
+                Contacto: info@mesaya.com
+
+                <br>
+
+                +51 934 432 432
+
+            </div>
+
+        </div>
+
+
+
+        <!-- EMPRESA -->
+
+        <div class="footer-column">
+
+            <h3>
+                Empresa
+            </h3>
+
+            <a href="nosotros.html">
+                Sobre nosotros
+            </a>
+
+            <a href="blog.html">
+                Blog
+            </a>
+
+        </div>
+
+
+
+        <!-- SERVICIOS -->
+
+        <div class="footer-column">
+
+            <h3>
+                Servicios
+            </h3>
+
+            <a href="afiliate.html">
+                Afíliate
+            </a>
+
+            <a href="ayuda.html">
+                Ayuda
+            </a>
+
+            <a href="faq.html">
+                Preguntas frecuentes
+            </a>
+
+        </div>
+
+
+
+        <!-- LEGAL -->
+
+        <div class="footer-column">
+
+            <h3>
+                Legal
+            </h3>
+
+            <a href="terminos.html">
+                Términos de servicio
+            </a>
+
+            <a href="privacidad.html">
+                Política de privacidad
+            </a>
+
+            <a href="accesibilidad.html">
+                Accesibilidad
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        Copyright © 2026 mesaya.com.pe. Todos los derechos reservados.
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     MODAL RESERVA
+========================================================= -->
+
+<div
+    class="modal"
+    id="reservationModal"
+>
+
+    <div class="modal-box">
+
+
+        <button
+            class="close-modal"
+            onclick="closeReservation()"
+        >
+            ×
+        </button>
+
+
+        <h2>
+            Reservar mesa
+        </h2>
+
+        <div
+            class="modal-restaurant"
+            id="reservationRestaurant"
+        >
+            Restaurante
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Fecha
+            </label>
+
+            <input
+                type="date"
+                id="reservationDate"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Hora
+            </label>
+
+            <select id="reservationTime">
+
+                <option>
+                    12:00 p. m.
+                </option>
+
+                <option>
+                    12:30 p. m.
+                </option>
+
+                <option>
+                    1:00 p. m.
+                </option>
+
+                <option>
+                    1:30 p. m.
+                </option>
+
+                <option>
+                    2:00 p. m.
+                </option>
+
+                <option>
+                    7:00 p. m.
+                </option>
+
+                <option>
+                    7:30 p. m.
+                </option>
+
+                <option>
+                    8:00 p. m.
+                </option>
+
+                <option>
+                    8:30 p. m.
+                </option>
+
+                <option>
+                    9:00 p. m.
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Número de personas
+            </label>
+
+            <select id="reservationGuests">
+
+                <option>
+                    1 persona
+                </option>
+
+                <option selected>
+                    2 personas
+                </option>
+
+                <option>
+                    3 personas
+                </option>
+
+                <option>
+                    4 personas
+                </option>
+
+                <option>
+                    5 personas
+                </option>
+
+                <option>
+                    6 personas
+                </option>
+
+                <option>
+                    7 personas
+                </option>
+
+                <option>
+                    8 personas
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            class="confirm-reservation"
+            onclick="confirmReservation()"
+        >
+            Confirmar reserva
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div
+    class="toast"
+    id="toast"
+></div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+
+    /* =========================================================
+       TOAST
+    ========================================================= */
+
+    function showToast(message) {
+
+        const toast = document.getElementById("toast");
+
+        toast.textContent = message;
+
+        toast.classList.add("show");
+
+        setTimeout(() => {
+
+            toast.classList.remove("show");
+
+        }, 3000);
+
+    }
+
+
+
+    /* =========================================================
+       FAVORITOS
+    ========================================================= */
+
+    function toggleFavorite(button) {
+
+        const icon = button.querySelector("i");
+
+        if (icon.classList.contains("fa-regular")) {
+
+            icon.classList.remove("fa-regular");
+
+            icon.classList.add("fa-solid");
+
+            button.style.color = "#d35d5d";
+
+            showToast("Restaurante agregado a favoritos");
+
+        } else {
+
+            icon.classList.remove("fa-solid");
+
+            icon.classList.add("fa-regular");
+
+            button.style.color = "#666";
+
+            showToast("Restaurante eliminado de favoritos");
+
+        }
+
+    }
+
+
+
+    /* =========================================================
+       FILTRO POR CATEGORÍA
+    ========================================================= */
+
+    function filterCategory(category) {
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+        searchInput.value = category;
+
+        const restaurantCards =
+            document.querySelectorAll(".restaurant-card");
+
+        let found = false;
+
+        restaurantCards.forEach(card => {
+
+            const cardCategory =
+                card.dataset.category;
+
+            if (
+                category === "Marina" &&
+                cardCategory === "Marina"
+            ) {
+
+                card.style.display = "block";
+                found = true;
+
+            } else if (
+                category === "Criolla" &&
+                cardCategory === "Criolla"
+            ) {
+
+                card.style.display = "block";
+                found = true;
+
+            } else if (
+                category === "Japonesa"
+            ) {
+
+                card.style.display = "none";
+
+            } else if (
+                category === "Mediterránea"
+            ) {
+
+                card.style.display = "none";
+
+            } else if (
+                category === "De autor"
+            ) {
+
+                card.style.display = "none";
+
+            } else {
+
+                card.style.display = "block";
+
+            }
+
+        });
+
+
+        document
+            .querySelector(".restaurants")
+            .scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+
+        if (!found) {
+
+            showToast(
+                "Mostrando resultados para " + category
+            );
+
+        }
+
+    }
+
+
+
+    /* =========================================================
+       BUSCADOR
+    ========================================================= */
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+
+    searchInput.addEventListener(
+        "input",
+        function () {
+
+            const value =
+                this.value.toLowerCase().trim();
+
+            const cards =
+                document.querySelectorAll(".restaurant-card");
+
+
+            cards.forEach(card => {
+
+                const text =
+                    card.textContent.toLowerCase();
+
+                if (
+                    value === "" ||
+                    text.includes(value)
+                ) {
+
+                    card.style.display = "block";
+
+                } else {
+
+                    card.style.display = "none";
+
+                }
+
+            });
+
+        }
+    );
+
+
+
+    /* =========================================================
+       MODAL DE RESERVA
+    ========================================================= */
+
+    function openReservation(restaurant) {
+
+        document
+            .getElementById("reservationRestaurant")
+            .textContent = restaurant;
+
+
+        const date =
+            document.getElementById("date").value;
+
+
+        document
+            .getElementById("reservationDate")
+            .value = date;
+
+
+        document
+            .getElementById("reservationGuests")
+            .value =
+            document.getElementById("guests").value +
+            " personas";
+
+
+        document
+            .getElementById("reservationModal")
+            .classList.add("active");
+
+    }
+
+
+
+    function closeReservation() {
+
+        document
+            .getElementById("reservationModal")
+            .classList.remove("active");
+
+    }
+
+
+
+    /* =========================================================
+       CONFIRMAR RESERVA
+    ========================================================= */
+
+    function confirmReservation() {
+
+        const restaurant =
+            document
+                .getElementById("reservationRestaurant")
+                .textContent;
+
+        const date =
+            document
+                .getElementById("reservationDate")
+                .value;
+
+        const time =
+            document
+                .getElementById("reservationTime")
+                .value;
+
+        const guests =
+            document
+                .getElementById("reservationGuests")
+                .value;
+
+
+        if (!date) {
+
+            showToast(
+                "Selecciona una fecha para continuar"
+            );
+
+            return;
+
+        }
+
+
+        closeReservation();
+
+
+        showToast(
+            "Reserva solicitada en " +
+            restaurant +
+            " · " +
+            date +
+            " · " +
+            time +
+            " · " +
+            guests
+        );
+
+    }
+
+
+
+    /* =========================================================
+       CERRAR MODAL HACIENDO CLICK AFUERA
+    ========================================================= */
+
+    document
+        .getElementById("reservationModal")
+        .addEventListener(
+            "click",
+            function(event) {
+
+                if (
+                    event.target === this
+                ) {
+
+                    closeReservation();
+
+                }
+
+            }
+        );
+
+
+
+    /* =========================================================
+       FECHA MÍNIMA
+    ========================================================= */
+
+    const today =
+        new Date()
+            .toISOString()
+            .split("T")[0];
+
+
+    document
+        .getElementById("date")
+        .setAttribute("min", today);
+
+    document
+        .getElementById("reservationDate")
+        .setAttribute("min", today);
+
+
+</script>
+
+
+</body>
+</html>
