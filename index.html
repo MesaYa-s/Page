@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#fff8f2">
+    <meta name="color-scheme" content="light">
 
     <!-- Priorización de la imagen principal del hero -->
-    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=85">
+    <link rel="preload"
+          as="image"
+          href="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?fm=webp&fit=crop&w=768&q=60"
+          imagesrcset="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?fm=webp&fit=crop&w=480&q=60 480w,
+                      https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?fm=webp&fit=crop&w=768&q=60 768w,
+                      https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?fm=webp&fit=crop&w=1200&q=60 1200w,
+                      https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?fm=webp&fit=crop&w=1600&q=60 1600w"
+          imagesizes="100vw">
 
     <meta name="description" content="Encuentra restaurantes en Lima, descubre opciones de comida y reserva tu restaurante ideal en MesaYa.">
 
@@ -55,6 +64,65 @@
 
         button {
             cursor: pointer;
+        }
+
+        button,
+        a,
+        input,
+        select {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Accesibilidad: navegación por teclado visible */
+        :focus-visible {
+            outline: 3px solid #1f5f45;
+            outline-offset: 3px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .skip-link {
+            position: fixed;
+            left: 12px;
+            top: 8px;
+            z-index: 5000;
+            transform: translateY(-150%);
+            background: #1d2924;
+            color: #fff;
+            padding: 9px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: transform 0.2s ease;
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
         }
 
         .container {
@@ -194,6 +262,9 @@
         }
 
         .create-account {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             background: #4c775e;
             color: white;
 
@@ -224,22 +295,35 @@
 
         .hero {
             height: 270px;
-
-            background-image:
-                linear-gradient(
-                    rgba(0,0,0,0.55),
-                    rgba(0,0,0,0.35)
-                ),
-                url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=85");
-
-            background-size: cover;
-            background-position: center 48%;
-
+            position: relative;
+            overflow: hidden;
             display: flex;
             align-items: center;
         }
 
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                rgba(0,0,0,0.55),
+                rgba(0,0,0,0.35)
+            );
+            pointer-events: none;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 48%;
+        }
+
         .hero-content {
+            position: relative;
+            z-index: 2;
             width: 94%;
             max-width: 1420px;
             margin: auto;
@@ -399,7 +483,14 @@
 
         .category {
             cursor: pointer;
-
+            border: 0;
+            padding: 0;
+            margin: 0;
+            background: transparent;
+            color: inherit;
+            font: inherit;
+            text-align: center;
+            width: 100%;
             transition: 0.2s;
         }
 
@@ -514,6 +605,13 @@
             color: #666;
 
             transition: 0.2s;
+            position: absolute;
+        }
+
+        .favorite::before {
+            content: "";
+            position: absolute;
+            inset: -8px;
         }
 
         .favorite:hover {
@@ -533,7 +631,7 @@
 
         .restaurant-info {
             font-size: 10px;
-            color: #777;
+            color: #5f5f5f;
 
             margin-bottom: 5px;
         }
@@ -621,7 +719,7 @@
 
             border: none;
 
-            background: #ff6e6e;
+            background: #b94343;
             color: white;
 
             border-radius: 20px;
@@ -633,7 +731,7 @@
         }
 
         .discount-btn:hover {
-            background: #eb5656;
+            background: #9f3535;
         }
 
         .discount-cards {
@@ -758,7 +856,7 @@
 
         .review-date {
             font-size: 9px;
-            color: #888;
+            color: #666;
 
             margin-bottom: 4px;
         }
@@ -793,7 +891,7 @@
             text-align: center;
 
             font-size: 8px;
-            color: #777;
+            color: #666;
         }
 
         .reviews-button {
@@ -1016,6 +1114,17 @@
         }
 
 
+        /* Renderizado eficiente de contenido fuera de la primera pantalla */
+        .section,
+        .discount-section,
+        .reviews-wrapper,
+        .contact,
+        footer {
+            content-visibility: auto;
+            contain-intrinsic-size: 500px;
+        }
+
+
         /* =========================================================
            TOAST
         ========================================================= */
@@ -1214,9 +1323,11 @@
      HEADER
 ========================================================= -->
 
+<a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
 <header>
 
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Navegación principal">
 
         <a href="index.html" class="logo">
 
@@ -1246,27 +1357,23 @@
 
         <div class="nav-right">
 
-            <button class="language" onclick="showToast('Selector de idioma preparado para futuras versiones')">
+            <button type="button" class="language" aria-label="Idioma seleccionado: Español" onclick="showToast('Selector de idioma preparado para futuras versiones')">
 
-                <i class="fa-solid fa-globe"></i>
+                <i class="fa-solid fa-globe" aria-hidden="true"></i>
 
                 Español
 
-                <i class="fa-solid fa-chevron-down"></i>
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
 
             </button>
 
 
-            <a href="registro.html">
-
-                <button class="create-account">
-                    Crear cuenta
-                </button>
-
+            <a href="registro.html" class="create-account">
+                Crear cuenta
             </a>
 
 
-            <i class="fa-solid fa-user user-icon"></i>
+            <i class="fa-solid fa-user user-icon" aria-hidden="true"></i>
 
         </div>
 
@@ -1281,6 +1388,19 @@
 ========================================================= -->
 
 <section class="hero">
+
+    <img class="hero-bg"
+         src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?fm=webp&fit=crop&w=768&q=60"
+         srcset="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?fm=webp&fit=crop&w=480&q=60 480w,
+                 https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?fm=webp&fit=crop&w=768&q=60 768w,
+                 https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?fm=webp&fit=crop&w=1200&q=60 1200w,
+                 https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?fm=webp&fit=crop&w=1600&q=60 1600w"
+         sizes="100vw"
+         alt=""
+         width="1600"
+         height="270"
+         fetchpriority="high"
+         decoding="async">
 
     <div class="hero-content">
 
@@ -1307,19 +1427,24 @@
 
 <div class="search-wrapper">
 
-    <div class="search-bar">
+    <div class="search-bar" role="search" aria-label="Buscar restaurantes">
 
 
         <!-- BUSCAR -->
 
         <div class="search-item">
 
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+
+            <label class="sr-only" for="searchInput">Buscar restaurante, cocina o plato</label>
 
             <input
-                type="text"
+                type="search"
                 id="searchInput"
+                name="search"
+                autocomplete="off"
                 placeholder="¿Qué restaurante, cocina o plato estás buscando?"
+                aria-label="Buscar restaurante, cocina o plato"
             >
 
         </div>
@@ -1329,9 +1454,11 @@
 
         <div class="search-item">
 
-            <i class="fa-solid fa-location-dot"></i>
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
 
-            <select id="location">
+            <label class="sr-only" for="location">Ubicación</label>
+
+            <select id="location" name="location" aria-label="Ubicación">
 
                 <option value="Lima, Perú">
                     Lima, Perú
@@ -1362,12 +1489,16 @@
 
         <div class="search-item">
 
-            <i class="fa-regular fa-calendar"></i>
+            <i class="fa-regular fa-calendar" aria-hidden="true"></i>
+
+            <label class="sr-only" for="date">Fecha de reserva</label>
 
             <input
                 type="date"
                 id="date"
+                name="date"
                 value="2026-09-26"
+                aria-label="Fecha de reserva"
             >
 
         </div>
@@ -1377,9 +1508,11 @@
 
         <div class="search-item">
 
-            <i class="fa-regular fa-user"></i>
+            <i class="fa-regular fa-user" aria-hidden="true"></i>
 
-            <select id="guests">
+            <label class="sr-only" for="guests">Número de personas</label>
+
+            <select id="guests" name="guests" aria-label="Número de personas">
 
                 <option value="1">
                     1 persona
@@ -1423,7 +1556,7 @@
 
 
 
-<main>
+<main id="contenido">
 
 
 <!-- =========================================================
@@ -1448,15 +1581,20 @@
     <div class="categories">
 
 
-        <div class="category"
+        <button type="button" class="category"
              onclick="filterCategory('Criolla')">
 
             <div class="category-image">
 
                 <img loading="lazy" decoding="async"
-                    src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=700&q=85"
+                    src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?fm=webp&fit=crop&w=320&q=60"
+                    srcset="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?fm=webp&fit=crop&w=320&q=60 320w,
+                            https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?fm=webp&fit=crop&w=600&q=60 600w"
+                    sizes="(max-width: 700px) 45vw, 18vw"
+                    width="600"
+                    height="120"
                     alt="Comida criolla"
-                >
+                )>
 
             </div>
 
@@ -1464,18 +1602,23 @@
                 Criolla
             </div>
 
-        </div>
+        </button>
 
 
-        <div class="category"
+        <button type="button" class="category"
              onclick="filterCategory('Japonesa')">
 
             <div class="category-image">
 
                 <img loading="lazy" decoding="async"
-                    src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=700&q=85"
+                    src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?fm=webp&fit=crop&w=320&q=60"
+                    srcset="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?fm=webp&fit=crop&w=320&q=60 320w,
+                            https://images.unsplash.com/photo-1569718212165-3a8278d5f624?fm=webp&fit=crop&w=600&q=60 600w"
+                    sizes="(max-width: 700px) 45vw, 18vw"
+                    width="600"
+                    height="120"
                     alt="Comida japonesa"
-                >
+                )>
 
             </div>
 
@@ -1483,18 +1626,23 @@
                 Japonesa
             </div>
 
-        </div>
+        </button>
 
 
-        <div class="category"
+        <button type="button" class="category"
              onclick="filterCategory('Marina')">
 
             <div class="category-image">
 
                 <img loading="lazy" decoding="async"
-                    src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=85"
+                    src="https://images.unsplash.com/photo-1547592180-85f173990554?fm=webp&fit=crop&w=320&q=60"
+                    srcset="https://images.unsplash.com/photo-1547592180-85f173990554?fm=webp&fit=crop&w=320&q=60 320w,
+                            https://images.unsplash.com/photo-1547592180-85f173990554?fm=webp&fit=crop&w=600&q=60 600w"
+                    sizes="(max-width: 700px) 45vw, 18vw"
+                    width="600"
+                    height="120"
                     alt="Comida marina"
-                >
+                )>
 
             </div>
 
@@ -1502,18 +1650,23 @@
                 Marina
             </div>
 
-        </div>
+        </button>
 
 
-        <div class="category"
+        <button type="button" class="category"
              onclick="filterCategory('Mediterránea')">
 
             <div class="category-image">
 
                 <img loading="lazy" decoding="async"
-                    src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=700&q=85"
+                    src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?fm=webp&fit=crop&w=320&q=60"
+                    srcset="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?fm=webp&fit=crop&w=320&q=60 320w,
+                            https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?fm=webp&fit=crop&w=600&q=60 600w"
+                    sizes="(max-width: 700px) 45vw, 18vw"
+                    width="600"
+                    height="120"
                     alt="Comida mediterránea"
-                >
+                )>
 
             </div>
 
@@ -1521,18 +1674,23 @@
                 Mediterránea
             </div>
 
-        </div>
+        </button>
 
 
-        <div class="category"
+        <button type="button" class="category"
              onclick="filterCategory('De autor')">
 
             <div class="category-image">
 
                 <img loading="lazy" decoding="async"
-                    src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=700&q=85"
+                    src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?fm=webp&fit=crop&w=320&q=60"
+                    srcset="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?fm=webp&fit=crop&w=320&q=60 320w,
+                            https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?fm=webp&fit=crop&w=600&q=60 600w"
+                    sizes="(max-width: 700px) 45vw, 18vw"
+                    width="600"
+                    height="120"
                     alt="Cocina de autor"
-                >
+                )>
 
             </div>
 
@@ -1540,7 +1698,7 @@
                 De autor
             </div>
 
-        </div>
+        </button>
 
     </div>
 
@@ -1578,16 +1736,22 @@
             <div class="restaurant-image">
 
                 <img loading="lazy" decoding="async"
-                    src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=900&q=85"
+                    src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?fm=webp&fit=crop&w=500&q=60"
+                    srcset="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?fm=webp&fit=crop&w=400&q=60 400w,
+                            https://images.unsplash.com/photo-1555396273-367ea4eb4db5?fm=webp&fit=crop&w=700&q=60 700w"
+                    sizes="(max-width: 700px) 90vw, (max-width: 1000px) 45vw, 30vw"
+                    width="700"
+                    height="145"
                     alt="Restaurante Rustica"
                 >
 
-                <button
+                <button type="button"
                     class="favorite"
                     onclick="toggleFavorite(this)"
-                    aria-label="Favorito"
+                    aria-label="Agregar a favoritos"
+                    aria-pressed="false"
                 >
-                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-regular fa-heart" aria-hidden="true"></i>
                 </button>
 
             </div>
@@ -1605,7 +1769,7 @@
 
                 <div class="rating">
 
-                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
 
                     <strong>4.8</strong>
 
@@ -1615,7 +1779,7 @@
 
                 </div>
 
-                <button
+                <button type="button"
                     class="reserve-btn"
                     onclick="openReservation('Rustica')"
                 >
@@ -1636,16 +1800,22 @@
             <div class="restaurant-image">
 
                 <img loading="lazy" decoding="async"
-                    src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85"
+                    src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?fm=webp&fit=crop&w=500&q=60"
+                    srcset="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?fm=webp&fit=crop&w=400&q=60 400w,
+                            https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?fm=webp&fit=crop&w=700&q=60 700w"
+                    sizes="(max-width: 700px) 90vw, (max-width: 1000px) 45vw, 30vw"
+                    width="700"
+                    height="145"
                     alt="Restaurante La Mar"
                 >
 
-                <button
+                <button type="button"
                     class="favorite"
                     onclick="toggleFavorite(this)"
-                    aria-label="Favorito"
+                    aria-label="Agregar a favoritos"
+                    aria-pressed="false"
                 >
-                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-regular fa-heart" aria-hidden="true"></i>
                 </button>
 
             </div>
@@ -1663,7 +1833,7 @@
 
                 <div class="rating">
 
-                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
 
                     <strong>4.9</strong>
 
@@ -1673,7 +1843,7 @@
 
                 </div>
 
-                <button
+                <button type="button"
                     class="reserve-btn"
                     onclick="openReservation('La Mar')"
                 >
@@ -1694,16 +1864,22 @@
             <div class="restaurant-image">
 
                 <img loading="lazy" decoding="async"
-                    src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=900&q=85"
+                    src="https://images.unsplash.com/photo-1513104890138-7c749659a591?fm=webp&fit=crop&w=500&q=60"
+                    srcset="https://images.unsplash.com/photo-1513104890138-7c749659a591?fm=webp&fit=crop&w=400&q=60 400w,
+                            https://images.unsplash.com/photo-1513104890138-7c749659a591?fm=webp&fit=crop&w=700&q=60 700w"
+                    sizes="(max-width: 700px) 90vw, (max-width: 1000px) 45vw, 30vw"
+                    width="700"
+                    height="145"
                     alt="La Antojeria"
                 >
 
-                <button
+                <button type="button"
                     class="favorite"
                     onclick="toggleFavorite(this)"
-                    aria-label="Favorito"
+                    aria-label="Agregar a favoritos"
+                    aria-pressed="false"
                 >
-                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-regular fa-heart" aria-hidden="true"></i>
                 </button>
 
             </div>
@@ -1721,7 +1897,7 @@
 
                 <div class="rating">
 
-                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
 
                     <strong>4.6</strong>
 
@@ -1731,7 +1907,7 @@
 
                 </div>
 
-                <button
+                <button type="button"
                     class="reserve-btn"
                     onclick="openReservation('La Antojeria')"
                 >
@@ -1766,7 +1942,7 @@
             Exclusivos de MesaYa
         </p>
 
-        <button
+        <button type="button"
             class="discount-btn"
             onclick="showToast('Mostrando promociones disponibles')"
         >
@@ -1787,7 +1963,12 @@
             <div class="discount-image">
 
                 <img loading="lazy" decoding="async"
-                    src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=700&q=85"
+                    src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?fm=webp&fit=crop&w=400&q=60"
+                    srcset="https://images.unsplash.com/photo-1504674900247-0877df9cc836?fm=webp&fit=crop&w=300&q=60 300w,
+                            https://images.unsplash.com/photo-1504674900247-0877df9cc836?fm=webp&fit=crop&w=500&q=60 500w"
+                    sizes="(max-width: 700px) 90vw, 28vw"
+                    width="500"
+                    height="57"
                     alt="Dos Tazas"
                 >
 
@@ -1803,7 +1984,7 @@
                     Café · Lince
                 </span>
 
-                <button
+                <button type="button"
                     class="mini-reserve"
                     onclick="openReservation('Dos Tazas')"
                 >
@@ -1823,7 +2004,12 @@
             <div class="discount-image">
 
                 <img loading="lazy" decoding="async"
-                    src="https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=700&q=85"
+                    src="https://images.unsplash.com/photo-1553621042-f6e147245754?fm=webp&fit=crop&w=400&q=60"
+                    srcset="https://images.unsplash.com/photo-1553621042-f6e147245754?fm=webp&fit=crop&w=300&q=60 300w,
+                            https://images.unsplash.com/photo-1553621042-f6e147245754?fm=webp&fit=crop&w=500&q=60 500w"
+                    sizes="(max-width: 700px) 90vw, 28vw"
+                    width="500"
+                    height="57"
                     alt="Lung Fung"
                 >
 
@@ -1839,7 +2025,7 @@
                     Chifa · Chorrillos
                 </span>
 
-                <button
+                <button type="button"
                     class="mini-reserve"
                     onclick="openReservation('Lung Fung')"
                 >
@@ -1859,7 +2045,12 @@
             <div class="discount-image">
 
                 <img loading="lazy" decoding="async"
-                    src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=700&q=85"
+                    src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?fm=webp&fit=crop&w=400&q=60"
+                    srcset="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?fm=webp&fit=crop&w=300&q=60 300w,
+                            https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?fm=webp&fit=crop&w=500&q=60 500w"
+                    sizes="(max-width: 700px) 90vw, 28vw"
+                    width="500"
+                    height="57"
                     alt="Café de Lima"
                 >
 
@@ -1875,7 +2066,7 @@
                     Café · Cercado de Lima
                 </span>
 
-                <button
+                <button type="button"
                     class="mini-reserve"
                     onclick="openReservation('Café de Lima')"
                 >
@@ -1917,7 +2108,12 @@
             <div class="review-avatar">
 
                 <img loading="lazy" decoding="async"
-                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=85"
+                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?fm=webp&fit=crop&w=96&q=60"
+                    srcset="https://images.unsplash.com/photo-1494790108377-be9c29b29330?fm=webp&fit=crop&w=96&q=60 96w,
+                            https://images.unsplash.com/photo-1494790108377-be9c29b29330?fm=webp&fit=crop&w=160&q=60 160w"
+                    sizes="48px"
+                    width="96"
+                    height="96"
                     alt="Camila"
                 >
 
@@ -1934,7 +2130,7 @@
                     Hace 3 días
                 </div>
 
-                <div class="review-stars">
+                <div class="review-stars" role="img" aria-label="5 de 5 estrellas">
                     ★★★★★
                 </div>
 
@@ -1974,7 +2170,12 @@
             <div class="review-avatar">
 
                 <img loading="lazy" decoding="async"
-                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=85"
+                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?fm=webp&fit=crop&w=96&q=60"
+                    srcset="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?fm=webp&fit=crop&w=96&q=60 96w,
+                            https://images.unsplash.com/photo-1500648767791-00dcc994a43e?fm=webp&fit=crop&w=160&q=60 160w"
+                    sizes="48px"
+                    width="96"
+                    height="96"
                     alt="Diego"
                 >
 
@@ -1991,7 +2192,7 @@
                     Hace 1 semana
                 </div>
 
-                <div class="review-stars">
+                <div class="review-stars" role="img" aria-label="5 de 5 estrellas">
                     ★★★★★
                 </div>
 
@@ -2030,7 +2231,12 @@
             <div class="review-avatar">
 
                 <img loading="lazy" decoding="async"
-                    src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=200&q=85"
+                    src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?fm=webp&fit=crop&w=96&q=60"
+                    srcset="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?fm=webp&fit=crop&w=96&q=60 96w,
+                            https://images.unsplash.com/photo-1531123897727-8f129e1688ce?fm=webp&fit=crop&w=160&q=60 160w"
+                    sizes="48px"
+                    width="96"
+                    height="96"
                     alt="Valeria"
                 >
 
@@ -2047,7 +2253,7 @@
                     Hace 4 días
                 </div>
 
-                <div class="review-stars">
+                <div class="review-stars" role="img" aria-label="4 de 5 estrellas">
                     ★★★★☆
                 </div>
 
@@ -2080,7 +2286,7 @@
 
 
 
-        <button
+        <button type="button"
             class="reviews-button"
             onclick="location.href='resenas.html'"
         >
@@ -2216,20 +2422,25 @@
 <div
     class="modal"
     id="reservationModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="reservationTitle"
+    aria-hidden="true"
 >
 
     <div class="modal-box">
 
 
-        <button
+        <button type="button"
             class="close-modal"
+            aria-label="Cerrar ventana de reserva"
             onclick="closeReservation()"
         >
             ×
         </button>
 
 
-        <h2>
+        <h2 id="reservationTitle">
             Reservar mesa
         </h2>
 
@@ -2243,13 +2454,14 @@
 
         <div class="form-group">
 
-            <label>
+            <label for="reservationDate">
                 Fecha
             </label>
 
             <input
                 type="date"
                 id="reservationDate"
+                name="reservationDate"
             >
 
         </div>
@@ -2257,11 +2469,11 @@
 
         <div class="form-group">
 
-            <label>
+            <label for="reservationTime">
                 Hora
             </label>
 
-            <select id="reservationTime">
+            <select id="reservationTime" name="reservationTime">
 
                 <option>
                     12:00 p. m.
@@ -2310,11 +2522,11 @@
 
         <div class="form-group">
 
-            <label>
+            <label for="reservationGuests">
                 Número de personas
             </label>
 
-            <select id="reservationGuests">
+            <select id="reservationGuests" name="reservationGuests">
 
                 <option>
                     1 persona
@@ -2353,7 +2565,7 @@
         </div>
 
 
-        <button
+        <button type="button"
             class="confirm-reservation"
             onclick="confirmReservation()"
         >
@@ -2373,6 +2585,9 @@
 <div
     class="toast"
     id="toast"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
 ></div>
 
 
@@ -2421,6 +2636,8 @@
             icon.classList.add("fa-solid");
 
             button.style.color = "#d35d5d";
+            button.setAttribute("aria-pressed", "true");
+            button.setAttribute("aria-label", "Quitar de favoritos");
 
             showToast("Restaurante agregado a favoritos");
 
@@ -2431,6 +2648,8 @@
             icon.classList.add("fa-regular");
 
             button.style.color = "#666";
+            button.setAttribute("aria-pressed", "false");
+            button.setAttribute("aria-label", "Agregar a favoritos");
 
             showToast("Restaurante eliminado de favoritos");
 
@@ -2572,7 +2791,11 @@
        MODAL DE RESERVA
     ========================================================= */
 
+    let lastFocusedElement = null;
+
     function openReservation(restaurant) {
+
+        lastFocusedElement = document.activeElement;
 
         document
             .getElementById("reservationRestaurant")
@@ -2595,9 +2818,13 @@
             " personas";
 
 
-        document
-            .getElementById("reservationModal")
-            .classList.add("active");
+        const modal = document.getElementById("reservationModal");
+        modal.classList.add("active");
+        modal.setAttribute("aria-hidden", "false");
+
+        setTimeout(() => {
+            document.getElementById("reservationDate").focus();
+        }, 0);
 
     }
 
@@ -2605,11 +2832,31 @@
 
     function closeReservation() {
 
-        document
-            .getElementById("reservationModal")
-            .classList.remove("active");
+        const modal = document.getElementById("reservationModal");
+        modal.classList.remove("active");
+        modal.setAttribute("aria-hidden", "true");
+
+        if (lastFocusedElement) {
+            lastFocusedElement.focus();
+        }
 
     }
+
+
+    document.getElementById("reservationModal").addEventListener("click", function (event) {
+        if (event.target === this) {
+            closeReservation();
+        }
+    });
+
+
+    document.addEventListener("keydown", function (event) {
+        const modal = document.getElementById("reservationModal");
+
+        if (event.key === "Escape" && modal.classList.contains("active")) {
+            closeReservation();
+        }
+    });
 
 
 
